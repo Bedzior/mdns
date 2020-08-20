@@ -1,0 +1,21 @@
+language: c
+
+os:
+    - linux
+    - windows
+    - osx
+
+stages:
+    - build
+
+jobs:
+    stage: build
+    name: Build mDNS library
+    script:
+        - cmake
+            -B build
+            -DCMAKE_INSTALL_PREFIX=install
+            .
+        - cmake
+            --build build
+            --target mdns
