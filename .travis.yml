@@ -5,17 +5,18 @@ os:
     - windows
     - osx
 
+compiler:
+    - gcc
+    - clang
+
 stages:
     - build
 
-jobs:
-    stage: build
-    name: Build mDNS library
-    script:
-        - cmake
-            -B build
-            -DCMAKE_INSTALL_PREFIX=install
-            .
-        - cmake
-            --build build
-            --target mdns
+script:
+    - cmake
+        -B ${TRAVIS_BUILD_DIR}/build
+        -DCMAKE_INSTALL_PREFIX=${TRAVIS_BUILD_DIR}/install
+        .
+    - cmake
+        --build ${TRAVIS_BUILD_DIR}/build
+        --target install
